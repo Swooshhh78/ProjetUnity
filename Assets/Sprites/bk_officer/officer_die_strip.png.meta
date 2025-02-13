@@ -60,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 15
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -112,20 +112,20 @@ TextureImporter:
       name: officer_die_strip_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 6
-        width: 45
-        height: 41
+        x: 0
+        y: 0
+        width: 49
+        height: 54
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ad878738cedded8c0800000000000000
-      internalID: -3972493813406467878
+      spriteID: d4d14d0dd1f565f42ace56e2dd6901a6
+      internalID: 1509558355
       vertices: []
       indices: 
       edges: []
@@ -135,19 +135,19 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 49
-        y: 5
-        width: 45
-        height: 42
+        y: 0
+        width: 49
+        height: 54
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9d55e61841f2fd300800000000000000
-      internalID: 278993467037603289
+      spriteID: 49215c2dcbc28d549a9433c3cca132c8
+      internalID: -110450191
       vertices: []
       indices: 
       edges: []
@@ -157,19 +157,19 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 98
-        y: 1
-        width: 42
-        height: 53
+        y: 0
+        width: 49
+        height: 54
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8f59add8b1c8c3e70800000000000000
-      internalID: 9096299397353477624
+      spriteID: dbfbfc10b6ab4da4581873344d295129
+      internalID: -1512293545
       vertices: []
       indices: 
       edges: []
@@ -178,9 +178,9 @@ TextureImporter:
       name: officer_die_strip_3
       rect:
         serializedVersion: 2
-        x: 146
+        x: 147
         y: 0
-        width: 50
+        width: 49
         height: 54
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -188,10 +188,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 22cce8a12f004b960800000000000000
-      internalID: 7616713909618002978
+      spriteID: 6e2df02ffdb884d42bb576bde51b9df4
+      internalID: 1591000477
       vertices: []
       indices: 
       edges: []
@@ -200,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5ef7320032a22e748bf142ae0044ec23
     internalID: 0
     vertices: []
     indices: 
@@ -209,7 +209,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      officer_die_strip_0: 1509558355
+      officer_die_strip_1: -110450191
+      officer_die_strip_2: -1512293545
+      officer_die_strip_3: 1591000477
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

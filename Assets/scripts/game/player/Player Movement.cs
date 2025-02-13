@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
 
     private Camera _camera;
 
+    private Animator _animator;
+
     // Variables pour la gestion de la caméra et de la rotation vers la souris
     private Camera mainCam;        // Référence à la caméra principale
     private Vector3 mousePos;      // Position de la souris dans le monde 2D
@@ -32,6 +34,7 @@ public class PlayerController : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody2D>(); // Récupère le Rigidbody2D attaché au joueur
         _camera = Camera.main;
+        _animator = GetComponent<Animator>();
     }
 
     // Mise à jour physique à chaque frame fixe
@@ -39,6 +42,14 @@ public class PlayerController : MonoBehaviour
     {
         SetPlayerVelocity();        // Applique la vélocité lissée du joueur
         RotateInDirectionOfInput(); // Effectue la rotation du joueur vers l'entrée
+        SetAnimation();
+    }
+
+    private void SetAnimation()
+    {
+        bool isMoving = _movementInput != Vector2.zero;
+
+        _animator.SetBool("IsMoving", isMoving);
     }
 
     // Méthode pour ajuster la vélocité du joueur (mouvement lissé)
