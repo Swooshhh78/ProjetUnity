@@ -1,0 +1,7 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/MainMenuStyle.uss?fileID=7433441132597879392&amp;guid=85dfba36d34534248abbe2d8afb558dd&amp;type=3#MainMenuStyle" />
+    <engine:VisualElement name="Container" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Background.png?fileID=2800000&amp;guid=fe36a557cf3fb7b48a195b2dac671dfc&amp;type=3#Background&quot;);">
+        <engine:Label text="Main Menu" name="Header" class="header" />
+        <engine:Button text="START" name="StartGameButton" class="button" style="font-size: 40px; top: 314px;" />
+    </engine:VisualElement>
+</engine:UXML>

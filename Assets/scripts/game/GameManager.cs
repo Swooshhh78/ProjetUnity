@@ -15,6 +15,6 @@ public class GameManager : MonoBehaviour
 
     private void EndGame()
     {
-        SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene("Game Over");
     }
 }

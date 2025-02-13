@@ -1,0 +1,8 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/MainMenuStyle.uss?fileID=7433441132597879392&amp;guid=85dfba36d34534248abbe2d8afb558dd&amp;type=3#MainMenuStyle" />
+    <engine:VisualElement name="Container" style="flex-grow: 1; background-color: rgb(0, 0, 0); background-image: url(&quot;project://database/Assets/background%20game%20over.png?fileID=2800000&amp;guid=d2ae2399ed6c5364085b9ee0faa8a5a3&amp;type=3#background game over&quot;);">
+        <engine:Label text="Game Over&#10;" name="HEADER" class="header" style="font-size: 100px;" />
+        <engine:Button text="START&#10;" name="STARTGAMEBUTTON" class="button" style="font-size: 40px;" />
+        <engine:Button text="EXIT&#10;" name="EXITGAMEBUTTON" class="button" style="font-size: 40px;" />
+    </engine:VisualElement>
+</engine:UXML>

@@ -1,13 +1,6 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
-using Random = UnityEngine.Random;
-
-
-
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -20,13 +13,23 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField]
     private float _screenBorder;
 
+    [SerializeField]
+    private float _obstacleCheckCircleRadius;
+
+    [SerializeField]
+    private float _obstacleCheckDistance;
+
+    [SerializeField]
+    private LayerMask _obstacleLayerMask;
+
     private Rigidbody2D _rigidbody;
     private PlayerAwarenessController _playerAwarenessController;
     private Vector2 _targetDirection;
-
     private float _changeDirectionCooldown;
-
     private Camera _camera;
+    private RaycastHit2D[] _obstacleCollisions;
+    private float _obstacleAvoidanceCooldown;
+    private Vector2 _obstacleAvoidanceTargetDirection;
 
     private void Awake()
     {
@@ -34,6 +37,7 @@ public class EnemyMovement : MonoBehaviour
         _playerAwarenessController = GetComponent<PlayerAwarenessController>();
         _targetDirection = transform.up;
         _camera = Camera.main;
+        _obstacleCollisions = new RaycastHit2D[10];
     }
 
     private void FixedUpdate()
@@ -46,9 +50,9 @@ public class EnemyMovement : MonoBehaviour
     private void UpdateTargetDirection()
     {
         HandleRandomDirectionChange();
-        HandlePlayerTargetin();
+        HandlePlayerTargeting();
+        HandleObstacles();
         HandleEnemyOffScreen();
-    
     }
 
     private void HandleRandomDirectionChange()
@@ -57,14 +61,19 @@ public class EnemyMovement : MonoBehaviour
 
         if (_changeDirectionCooldown <= 0)
         {
-             
             float angleChange = Random.Range(-90f, 90f);
- 
             Quaternion rotation = Quaternion.AngleAxis(angleChange, transform.forward);
-
             _targetDirection = rotation * _targetDirection;
 
             _changeDirectionCooldown = Random.Range(1f, 5f);
+        }
+    }
+
+    private void HandlePlayerTargeting()
+    {
+        if (_playerAwarenessController.AwareOfPlayer)
+        {
+            _targetDirection = _playerAwarenessController.DirectionToPlayer;
         }
     }
 
@@ -85,17 +94,46 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    private void HandlePlayerTargetin()
+    private void HandleObstacles()
     {
-        if (_playerAwarenessController.AwareOfPlayer)
+        _obstacleAvoidanceCooldown -= Time.deltaTime;
+
+        var contactFilter = new ContactFilter2D();
+        contactFilter.SetLayerMask(_obstacleLayerMask);
+
+        int numberOfCollisions = Physics2D.CircleCast(
+            transform.position,
+            _obstacleCheckCircleRadius,
+            transform.up,
+            contactFilter,
+            _obstacleCollisions,
+            _obstacleCheckDistance);
+
+        for (int index = 0; index < numberOfCollisions; index++)
         {
-            _targetDirection = _playerAwarenessController.DirectionToPlayer;
+            var obstacleCollision = _obstacleCollisions[index];
+
+            if (obstacleCollision.collider.gameObject == gameObject)
+            {
+                continue;
+            }
+
+            if (_obstacleAvoidanceCooldown <= 0)
+            {
+                _obstacleAvoidanceTargetDirection = obstacleCollision.normal;
+                _obstacleAvoidanceCooldown = 0.5f;
+            }
+
+            var targetRotation = Quaternion.LookRotation(transform.forward, _obstacleAvoidanceTargetDirection);
+            var rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
+
+            _targetDirection = rotation * Vector2.up;
+            break;
         }
     }
 
     private void RotateTowardsTarget()
     {
-             
         Quaternion targetRotation = Quaternion.LookRotation(transform.forward, _targetDirection);
         Quaternion rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
 
@@ -104,11 +142,6 @@ public class EnemyMovement : MonoBehaviour
 
     private void SetVelocity()
     {
-        
         _rigidbody.linearVelocity = transform.up * _speed;
-    
-
     }
-
-
 }
